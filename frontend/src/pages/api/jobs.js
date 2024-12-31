@@ -12,6 +12,10 @@ const db = new sqlite3.Database('jobs.db', (err) => {
 
 export default function handler(req, res) {
   if (req.method === 'GET') {
+    res.status(200).json({
+      status: 200,
+      message: 'OK'
+    });
     db.all('SELECT * FROM jobs', [], (err, rows) => {
       if (err) return res.status(500).json({ error: err.message });
       res.status(200).json(rows);
